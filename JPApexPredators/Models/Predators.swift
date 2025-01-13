@@ -11,7 +11,7 @@ import Foundation
 V-32,Paso 3, decodificamos el json.*/
 class Predators{
 
-    //Paso 50
+    //V-37,paso 64
     var allApexPredators: [ApexPredator] = []
     //Paso 4, creammos una variable para poder decodificarlo, le ponemos var porque va a cambiar.
     var apexPredators: [ApexPredator] = []
@@ -34,8 +34,9 @@ class Predators{
                 /*a esto se le llama snake case "movie_Scenes",pero swfit lo hace en camelCase
                 Paso 6,Importante tenemos "movie_Scenes" en el Json ,pero debe ser igual a "movieScenes"*/
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
+                //Paso 65,cambiamos a allApexPredators
                 allApexPredators = try decoder.decode([ApexPredator].self, from: data)
-                //Paso 52
+                //Paso 66
                 apexPredators = allApexPredators
                 
             }catch{
@@ -71,14 +72,15 @@ class Predators{
         }
     }
     
-    //V-37, Paso
+    //V-36, Paso 46
     func filter(by type:PredatorType){
-        //Paso
+        //Paso 63, ,sino se filtra nada ,no hagas nada pon todo los dinosarios.
         if type == .all{
-            //Paso ,sino se filtra nada pon todo los dinosarios
+            //Paso 67,ponemos esto , ver video
             apexPredators = allApexPredators
         }else {
-            //Paso ,
+            //Paso 48,ver el video
+            //Paso 68, ponemos el allApexPredators
             apexPredators = allApexPredators.filter { predator in
                 predator.type == type
             }

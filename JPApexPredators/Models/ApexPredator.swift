@@ -34,14 +34,14 @@ struct ApexPredator: Decodable, Identifiable {
         name.lowercased().replacingOccurrences(of: " ", with: "")
     }
     
-    //Vid 41, Paso 73 maps.
+    //V-41, Paso 99,configuracion para maps.
     var location: CLLocationCoordinate2D{
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
     /*
      Paso 2, creamos las propiedades de MovieScene,también debe ser Decodable para que no marque error.
-     Paso 67, ponemos el Identifiable*/
+     Paso 91, ponemos el Identifiable*/
     struct MovieScene:Decodable, Identifiable {
         
         let id : Int
@@ -54,22 +54,24 @@ struct ApexPredator: Decodable, Identifiable {
 Paso 17,creamos el "PredatorType" hacemos esto para poder poner el color de cada tipo del dinosaurio en letras
 le ponemos string para que no cause problema y porque así viene en el JSON y tambien debe ser decodable.
  
-Paso 38, quitamos el PredatorType fuera
-Paso 44, agregamos CaseIterable, para agregar todos los casos
-Paso 46 , pon Identifiable*/
+Paso 47, quitamos el PredatorType fuera ,para que pueda ser utilizado por "Predators"
+Paso 57, agregamos CaseIterable, para agregar todos los casos
+Paso 58 , ponemos Identifiable para que no marque error*/
 enum PredatorType: String, Decodable,CaseIterable,Identifiable{
-    //Paso 41, pongo el all
+    
+    //Paso 51, pongo el all
     case all
     case land
     case air
     case sea
     
-    //Paso 47
+    //Paso 60
     var id : PredatorType{
         self
     }
     //Paso 18, creamos el computer property.
     var background:Color{
+        
         switch self{
             
         case .land:
@@ -83,9 +85,11 @@ enum PredatorType: String, Decodable,CaseIterable,Identifiable{
         }
     }
     
-    //Paso 41
+    //Paso 52, creamos los icónos
     var icon: String {
+        
         switch self{
+    
         case .all:
             "square.stack.3d.up.fill"
         case .land:

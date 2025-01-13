@@ -16,17 +16,17 @@ struct ContentView: View {
    
     //V-34,Paso 29 ,computer property, para buscar a los dinosauritos
     var filteredDinos: [ApexPredator]{
-        //Paso 36
+        //Paso 62
         predators.filter(by: currentSelection)
         //Paso 42
         predators.sort(by: alphabetical)
-        //Paso ,llama a la funcion que los busca
+        //Paso 36,llama a la funcion que los busca
         return predators.search(for: searchText)
     }
     
     //Paso 41
     @State var alphabetical = false
-    //Paso 
+    //Paso 53,variable para seleccionar el tipo de predator
     @State var currentSelection = PredatorType.all
     
     var body: some View {
@@ -42,10 +42,13 @@ struct ContentView: View {
                 NavigationLink{
                     //Vid 38,paso 54
                     //Paso 56, le mandamos el predator:predator
-                    PredatorDetailView(predator:predator,
-                                       //Paso 76
-                                       position:.camera(MapCamera(centerCoordinate: predator.location, distance: 30000)))
-                   /*Paso 25, Image(predator.image)
+                    //V-38,Paso 70, creamos el PredatorDeatilView
+                    PredatorDetailView(
+                        //Paso 74,ponemos el predator
+                        predator:predator,
+                        //Paso 103,le mandamos la direccion del dino
+                        position:.camera(MapCamera(centerCoordinate: predator.location, distance: 30000)))
+                        /*Paso 25, Image(predator.image)
                         .resizable()
                         .scaledToFit()*/
                 }label:{
@@ -109,16 +112,20 @@ struct ContentView: View {
                             .symbolEffect(.bounce,value: alphabetical)
                     }
                 }
-                //Paso
+                //Paso 49, agregamos otro ToolbarItem
                 ToolbarItem(placement: .topBarTrailing){
+                    //Paso 50 ,ponemos un Menu
                     Menu{
-                        //Paso
+                        //Paso 54,ponemos el Picker
                         Picker("Filter", selection:
+                                //Paso 55, seleccionamos el dinosaurio por tipo.
+                                //Paso 69,le ponemos la animación.
                                 $currentSelection.animation()){
+                            //Paso 56, hacemos un Foreach para seleccionarlos
                             ForEach(PredatorType.allCases){
-                                //Paso , ponemos el type in
+                                //Paso 59, ponemos el type in
                                 type in
-                                //Paso
+                                //Paso 61
                                 Label(type.rawValue.capitalized,systemImage: type.icon)
                             }
                         }
