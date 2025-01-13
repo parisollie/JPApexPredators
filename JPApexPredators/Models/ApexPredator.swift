@@ -9,14 +9,16 @@ import Foundation
 import SwiftUI
 import MapKit
 
-/*V-31
+/*
+ V-31
  Paso 1 copiamos la estructura del JSON: "jpapexpredators"
  ponemos Decodable para que transforme la información del JSON.
- Paso 8, le ponemos el Identifiable. */
+ V-33,Paso 10, le ponemos el Identifiable para que no nos marque error en el ContentView. */
 struct ApexPredator: Decodable, Identifiable {
     
     let id : Int
     let name : String
+    //Paso 19, cambiamos el valor a "PredatorType"
     let type : PredatorType
     let latitude : Double
     let longitude : Double
@@ -26,9 +28,9 @@ struct ApexPredator: Decodable, Identifiable {
     let movieScenes: [MovieScene]
     let link : String
     
-    //Vid 34,Paso 9, para poder leer el nombre de las imágenes.
+    //V-33,Paso 12, para poder leer el nombre de las imágenes.
     var image : String{
-        //compuer propertys
+        //compuer propertys, no tiene espacios y son minúsculas.
         name.lowercased().replacingOccurrences(of: " ", with: "")
     }
     
@@ -48,8 +50,10 @@ struct ApexPredator: Decodable, Identifiable {
     }
 }
 
-/*Paso 11, hacemos esto para poder poner el color de cada tipo del dinosaruio en letras
-le ponemos string para que no cause problema y porque así viene en el JSON y tambien debe ser decodable
+/*
+Paso 17,creamos el "PredatorType" hacemos esto para poder poner el color de cada tipo del dinosaurio en letras
+le ponemos string para que no cause problema y porque así viene en el JSON y tambien debe ser decodable.
+ 
 Paso 38, quitamos el PredatorType fuera
 Paso 44, agregamos CaseIterable, para agregar todos los casos
 Paso 46 , pon Identifiable*/
@@ -64,9 +68,10 @@ enum PredatorType: String, Decodable,CaseIterable,Identifiable{
     var id : PredatorType{
         self
     }
-    //Paso 12, creamos el computer property.
+    //Paso 18, creamos el computer property.
     var background:Color{
         switch self{
+            
         case .land:
                 .brown
         case .air:
@@ -77,6 +82,7 @@ enum PredatorType: String, Decodable,CaseIterable,Identifiable{
                 .black
         }
     }
+    
     //Paso 41
     var icon: String {
         switch self{

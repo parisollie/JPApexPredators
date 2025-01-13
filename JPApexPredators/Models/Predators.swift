@@ -45,23 +45,22 @@ class Predators{
     }
     
     
-    //Vid 36, Paso 24 , creamos la función,esto regresa la colección de ->[ApexPredator]
-    
+    //V-35,Paso 34, creamos la función que buscara dinosaurios,esto regresa la colección de ->[ApexPredator]
     func search (for searchTerm: String) ->[ApexPredator]{
-        //Paso 22, sino han escrito nada
+        //V-34,Paso 31, sino han escrito nada
         if searchTerm.isEmpty{
-            //regresame todo los dinosarios.
+            //regresamé todos los dinosarios.
             return apexPredators
         }else{
-            //regresa los predator filtrados.
+            //Paso 32,regresa los predator filtrados.
             return apexPredators.filter{predator in predator.name.localizedCaseInsensitiveContains(searchTerm)
             }
         }
     }
     
-    //Paso 26,para ordenar alfabeticamente los dinosaurios.
+    //Paso 37,función,para ordenar alfábeticamente los dinosaurios.
     func sort (by alphabetical : Bool){
-        //necesitamos 2 propiedades para poder comparar
+        //necesitamos 2 propiedades para poder comparar.
         apexPredators.sort{ predator1,predator2 in
             
             if alphabetical{
@@ -72,14 +71,14 @@ class Predators{
         }
     }
     
-    //Vid 37, Paso 32
+    //V-37, Paso
     func filter(by type:PredatorType){
-        //Paso 50
+        //Paso
         if type == .all{
-            //Paso 53,sino se filtra nada pon todo los dinosarios
+            //Paso ,sino se filtra nada pon todo los dinosarios
             apexPredators = allApexPredators
         }else {
-            //Paso 39,
+            //Paso ,
             apexPredators = allApexPredators.filter { predator in
                 predator.type == type
             }

@@ -9,86 +9,91 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-    //Vid 34,Paso 6 , hacemos una instancia
+    //V-33,Paso 8 , hacemos una instancia para acceder a nuestros datos.
     let predators = Predators()
-    //Paso 18
+    //Paso 26,para el search
     @State var searchText = ""
-    //Paso 28
-    @State var alphabetical = false
-    //Paso 42
-    @State var currentSelection = PredatorType.all
-    //Paso 21,computer property
+   
+    //V-34,Paso 29 ,computer property, para buscar a los dinosauritos
     var filteredDinos: [ApexPredator]{
-        //Paso 49
+        //Paso 36
         predators.filter(by: currentSelection)
-        //Paso 29
+        //Paso 42
         predators.sort(by: alphabetical)
-        //Paso 25,llama a la funcion que los busca 
+        //Paso ,llama a la funcion que los busca
         return predators.search(for: searchText)
     }
     
+    //Paso 41
+    @State var alphabetical = false
+    //Paso 
+    @State var currentSelection = PredatorType.all
+    
     var body: some View {
-        //Vid 35,paso 15 ,ponemos el  NavigationStack
+        //V-34,paso 22 ,ponemos el  NavigationStack que es para navegar a otra página.
         NavigationStack {
-            //Vid 34, Paso 7
+            //Paso 9,ponemos la lista de pretadors.
             //List(predators.apexPredators){ predator in
             //Text(predator.name)
+            ///Paso 30 le ponemos el (filteredDinos)
             //Vid 49, creamos nuestra lista
             List(filteredDinos){ predator in
-                //Paso 17, pongo el NavigationLink que sera esto (>)
+                //Paso 24, pongo el NavigationLink que será esto (>)
                 NavigationLink{
                     //Vid 38,paso 54
                     //Paso 56, le mandamos el predator:predator
-                    
                     PredatorDetailView(predator:predator,
                                        //Paso 76
                                        position:.camera(MapCamera(centerCoordinate: predator.location, distance: 30000)))
-                   /*Vid 35, Image(predator.image)
+                   /*Paso 25, Image(predator.image)
                         .resizable()
                         .scaledToFit()*/
-                    
                 }label:{
+                    //Paso 10,ponemos el HStack
                     HStack{
-                        //Paso 10,Dinosaur image
+                        //Paso 13,ponemos la imágen del dinosaurio.
                         Image(predator.image)
+                            //Le ponemos sus modifiers.
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100,height: 100)
                             .shadow(color:.white,radius: 1)
-                        // (alignment: .leading), movera el texto a la izq
+                        //Paso 11,ponemos el VStack,el (alignment: .leading), movera el texto a la izq
                         VStack(alignment: .leading){
-                            //Name
+                            //Paso 14,ponemos el nombre del dinosario
                             Text(predator.name)
                                 .fontWeight(.bold)
-                            //Paso 13,Type, como no string ahora debemos poner rawValue
+                            //Paso 16,le ponemos el type del predator
+                            //Paso 21,como ya no es tipon string y es tipo "PredatorType", ahora debemos poner rawValue.
                             Text(predator.type.rawValue.capitalized)
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .padding(.horizontal,13)
                                 .padding(.vertical,5)
-                                //Paso 14
+                                //Paso 20,le ponemos el color de acuerdo al tipo de dinosaurio.
                                 .background(predator.type.background)
                                 .clipShape(.capsule)
                         }
                     }
                 }
-            }
-            //Paso 16, ponemos el navigationTitle
+            }//Final Label y navigationLink
+            //Paso 23, ponemos el navigationTitle
             .navigationTitle("Apex Predators")
-            //Paso 19, para poner el buscador
+            //Paso 27, para poner el buscador
             .searchable(text: $searchText)
-            //Paso 20,para deshabilitarlo el autocorrector
+            //Paso 28,para deshabilitarlo el autocorrector
             .autocorrectionDisabled()
-            //Paso 23,cuando cambie el texto se iran moviendo
+            //Paso 33,ponemos la animación,cuando cambie el texto se irán moviendo.
             .animation(.default,value:searchText)
-            //Vid 51
+            //Paso 38 ponemos el toolbar
             .toolbar{
-                //Vid 36,paso 27, botón para ordenar alfabeticamente
+                //Paso 39, ponemos el ToolbarItem,botón para ordenar alfábeticamente
                 ToolbarItem(placement:.topBarLeading){
+                    //Paso 40, ponemos el boton
                     Button{
-                        //Paso 32, le ponemos la animacion
+                        //Paso 45, le ponemos la animación.
                         withAnimation{
-                            //Paso 30, cambiaremos el valor de false a true
+                            //Paso 43, cambiaremos el valor de false a true
                             alphabetical.toggle()
                         }
                     }label:{
@@ -97,22 +102,23 @@ struct ContentView: View {
                          }else{
                          Image(systemName: "textformat")
                          }*/
-                        //Paso 31, Forma ternaria
-                        //si alfphabetical es true pon film sino pon el de letras
+                        //Forma ternaria:
+                        //si alfphabetical es true pon film simbolo sino pon el simbolo de letras.
+                        //Paso 44
                         Image(systemName: alphabetical ? "film" : "textformat")
                             .symbolEffect(.bounce,value: alphabetical)
                     }
                 }
-                //Paso 40
+                //Paso
                 ToolbarItem(placement: .topBarTrailing){
                     Menu{
-                        //Paso 43
+                        //Paso
                         Picker("Filter", selection:
                                 $currentSelection.animation()){
                             ForEach(PredatorType.allCases){
-                                //Paso 45, ponemos el type in 
+                                //Paso , ponemos el type in
                                 type in
-                                //Paso 48
+                                //Paso
                                 Label(type.rawValue.capitalized,systemImage: type.icon)
                             }
                         }
@@ -121,7 +127,7 @@ struct ContentView: View {
                     }
                 }
             }
-            //Paso 11,para poner el fondo negro
+            //Paso 15,para poner el fondo negro.
             .preferredColorScheme(.dark)
         }
     }
