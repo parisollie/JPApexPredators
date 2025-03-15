@@ -44,7 +44,7 @@ struct MainView: View {
                 NavigationLink{
                     /*
                       Paso 56?, le mandamos el predator:predator
-                      V-38,Paso 1.69, mandamos a llamar PredatorDeatilView //FINAL
+                      V-38,Paso 1.69, mandamos a llamar PredatorDeatilView //FINAL PASOS
                      */
                     PredatorDetailView(
                         //Paso 2.4,ponemos el predator

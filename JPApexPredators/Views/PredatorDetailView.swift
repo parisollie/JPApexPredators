@@ -105,10 +105,10 @@ struct PredatorDetailView: View {
                                 .background(.black.opacity(0.33))
                                 .clipShape(.rect(bottomTrailingRadius: 15))
                         }
-                        //Paso 2.43 ,le ponemos sombra al current location FIN
+                        //Paso 2.43 ,le ponemos sombra al current location FINAL PASOS
                         .clipShape(.rect(cornerRadius: 15))
                     }
-                    //Paso 3.14,FIN
+                    //Paso 3.14,FINAL PASOS
                     .matchedTransitionSource(id: 1, in: namespace)
                     
                     
