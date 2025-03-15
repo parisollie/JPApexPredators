@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-    //V-33,Paso 8 , hacemos una instancia para acceder a nuestros datos.
+    //V-33,Paso 1.8 , hacemos una instancia para acceder a nuestros datos.
     let predators = Predators()
     //Paso 26,para el search
     @State var searchText = ""
@@ -32,11 +32,12 @@ struct ContentView: View {
     var body: some View {
         //V-34,paso 22 ,ponemos el  NavigationStack que es para navegar a otra página.
         NavigationStack {
-            //Paso 9,ponemos la lista de pretadors.
+            /*
+              Paso 9,ponemos la lista de pretadors.
             //List(predators.apexPredators){ predator in
             //Text(predator.name)
             ///Paso 30 le ponemos el (filteredDinos)
-            //Vid 49, creamos nuestra lista
+            //Vid 49, creamos nuestra lista*/
             List(filteredDinos){ predator in
                 //Paso 24, pongo el NavigationLink que será esto (>)
                 NavigationLink{
@@ -61,7 +62,7 @@ struct ContentView: View {
                             .scaledToFit()
                             .frame(width: 100,height: 100)
                             .shadow(color:.white,radius: 1)
-                        //Paso 11,ponemos el VStack,el (alignment: .leading), movera el texto a la izq
+                            //Paso 11,ponemos el VStack,el (alignment: .leading), movera el texto a la izq
                         VStack(alignment: .leading){
                             //Paso 14,ponemos el nombre del dinosario
                             Text(predator.name)

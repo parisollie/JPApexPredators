@@ -7,22 +7,24 @@
 
 import Foundation
 
-/*Class sirve mas para la manipulación de los datos.
-V-32,Paso 3, decodificamos el json.*/
+/*
+  Class sirve mas para la manipulación de los datos.
+  V-32,Paso 1.3, decodificamos el json.
+ */
 class Predators{
-
+    //Paso 1.4, creammos una variable para poder decodificarlo, le ponemos var porque va a cambiar.
+    var apexPredators: [ApexPredator] = []
+    
     //V-37,paso 64
     var allApexPredators: [ApexPredator] = []
-    //Paso 4, creammos una variable para poder decodificarlo, le ponemos var porque va a cambiar.
-    var apexPredators: [ApexPredator] = []
 
     
-    //Paso 7,creamos una instancia para poder llamarlos,siempre va.
+    //Paso 1.7,creamos una instancia para poder llamarlos,siempre va.
     init(){
         decodeApexPredatorData()
     }
     
-    //Paso 5,creamos nuestra función de decodificación.
+    //Paso 1.5,creamos nuestra función de decodificación.
     func decodeApexPredatorData(){
         
         //Le mandamos un archivo para codificar el json.
@@ -31,9 +33,13 @@ class Predators{
                 //bot question mark needed.
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
-                /*a esto se le llama snake case "movie_Scenes",pero swfit lo hace en camelCase
-                Paso 6,Importante tenemos "movie_Scenes" en el Json ,pero debe ser igual a "movieScenes"*/
+                /*
+                   a esto se le llama snake case "movie_Scenes",pero swfit lo hace en camelCase
+                   Paso 1.6,Importante tenemos "movie_Scenes" en el Json ,pero debe ser igual a
+                   "movieScenes"
+                */
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
+                
                 //Paso 65,cambiamos a allApexPredators
                 allApexPredators = try decoder.decode([ApexPredator].self, from: data)
                 //Paso 66

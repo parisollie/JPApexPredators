@@ -10,10 +10,12 @@ import SwiftUI
 import MapKit
 
 /*
- V-31
- Paso 1 copiamos la estructura del JSON: "jpapexpredators"
- ponemos Decodable para que transforme la información del JSON.
- V-33,Paso 10, le ponemos el Identifiable para que no nos marque error en el ContentView. */
+  V-31
+  Paso 1.1 copiamos la estructura del JSON: "jpapexpredators"
+  ponemos Decodable para que transforme la información del JSON.
+ 
+  V-33,Paso 10, le ponemos el Identifiable para que no nos marque error en el ContentView.
+ */
 struct ApexPredator: Decodable, Identifiable {
     
     let id : Int
@@ -40,8 +42,9 @@ struct ApexPredator: Decodable, Identifiable {
     }
     
     /*
-     Paso 2, creamos las propiedades de MovieScene,también debe ser Decodable para que no marque error.
-     Paso 91, ponemos el Identifiable*/
+       Paso 1.2, creamos las propiedades de MovieScene,también debe ser Decodable para que no marque error.
+       Paso 91, ponemos el Identifiable
+    */
     struct MovieScene:Decodable, Identifiable {
         
         let id : Int
