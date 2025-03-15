@@ -5,21 +5,21 @@
 //  Created by Paul F on 27/10/24.
 //
 
-//V-42, creamos esta vista
+//V-42,Pso 3.0 creamos esta vista
 import SwiftUI
 import MapKit
 
 struct PredatorMapView: View {
-    //Paso 113, para que tengamos todos los dinosarios en el mapa
+    //Paso 3.1, para que tengamos todos los dinosarios en el mapa
     let predators = Predators()
-    //Paso 114,trae todo los dinosaurios al mapa
+    //Paso 3.2,trae todo los dinosaurios al mapa
     @State var position: MapCameraPosition
-    //Paso 115
+    //Paso 3.3
     @State var satellite = false
     var body: some View {
-        //Paso 116
+        //Paso 3.4
         Map(position: $position){
-            //Paso 117,Hacemos un ForEach , para que recorra cada uno de los dinosaruios
+            //Paso 3.5,Hacemos un ForEach , para que recorra cada uno de los dinosaruios
             ForEach(predators.apexPredators){
                 predator in Annotation (predator.name, coordinate: predator.location){
                     Image(predator.image)
@@ -31,7 +31,7 @@ struct PredatorMapView: View {
                 }
             }
         }
-        //Paso 118,sattellite is es true muestra la imagen sino muestra la estandar
+        //Paso 3.6,sattellite is es true muestra la imagen sino muestra la estandar
         .mapStyle(satellite ? .imagery(elevation: .realistic)
                   : .standard(elevation:.realistic))
         .overlay(alignment:.bottomTrailing){
@@ -49,13 +49,13 @@ struct PredatorMapView: View {
                 .padding()
             }
         }
-        //Paso 119
+        //Paso 3.7
         .toolbarBackground(.automatic)
     }
 }
 
 #Preview {
-    //Paso 120
+    //Paso 3.8
     PredatorMapView(
         position: .camera(MapCamera(
                 centerCoordinate:
