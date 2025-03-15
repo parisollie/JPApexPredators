@@ -59,18 +59,18 @@ struct ApexPredator: Decodable, Identifiable {
   no cause problema y porque así viene en el JSON y tambien debe ser decodable.
  
    Paso 1.46, quitamos el PredatorType fuera ,para que pueda ser utilizado por "Predators"
-   Paso 57, agregamos CaseIterable, para agregar todos los casos
-   Paso 58 , ponemos Identifiable para que no marque error.
+   Paso 1.57, agregamos CaseIterable, para agregar todos los casos
+   Paso 1.58 , ponemos Identifiable para que no marque error.
 */
 enum PredatorType: String, Decodable,CaseIterable,Identifiable{
     
-    //Paso 1.50, pongo el all
+    //Paso 1.51, pongo el all
     case all
     case land
     case air
     case sea
     
-    //Paso 60
+    //Paso 1.59
     var id : PredatorType{
         self
     }
@@ -90,7 +90,7 @@ enum PredatorType: String, Decodable,CaseIterable,Identifiable{
         }
     }
     
-    //Paso 1.51, creamos los icónos
+    //Paso 1.52, creamos los icónos
     var icon: String {
         
         switch self{

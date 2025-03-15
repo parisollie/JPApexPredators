@@ -16,7 +16,7 @@ struct MainView: View {
    
     //V-34,Paso 1.29 ,computer property, para buscar a los dinosauritos
     var filteredDinos: [ApexPredator]{
-        //Paso 62
+        //Paso 1.62
         predators.filter(by: currentSelection)
         //Paso 1.41
         predators.sort(by: alphabetical)
@@ -24,9 +24,9 @@ struct MainView: View {
         return predators.search(for: searchText)
     }
     
-    //Paso 1.40
+    //Paso 1.40,propiedad para saber si esta ordenado o no
     @State var alphabetical = false
-    //Paso 1.52,variable para seleccionar el tipo de predator
+    //Paso 1.53,variable para seleccionar el tipo de predator
     @State var currentSelection = PredatorType.all
     
     var body: some View {
@@ -43,9 +43,8 @@ struct MainView: View {
                 //Paso 1.24, pongo el NavigationLink que será esto (>)
                 NavigationLink{
                     /*
-                      Vid 38,paso 1.53 //FIN?
-                      Paso 56, le mandamos el predator:predator
-                      V-38,Paso 70, creamos el PredatorDeatilView
+                      Paso 56?, le mandamos el predator:predator
+                      V-38,Paso 1.69, mandamos a llamar PredatorDeatilView //FINAL
                      */
                     PredatorDetailView(
                         //Paso 2.4,ponemos el predator
@@ -123,20 +122,21 @@ struct MainView: View {
                 ToolbarItem(placement: .topBarTrailing){
                     //Paso 1.49 ,ponemos un Menu
                     Menu{
-                        //Paso 54,ponemos el Picker
+                        //Paso 1.54,ponemos el Picker
                         Picker("Filter", selection:
-                                //Paso 55, seleccionamos el dinosaurio por tipo.
-                                //Paso 69,le ponemos la animación.
+                                //Paso 1.55, seleccionamos el dinosaurio por tipo.,con ($currentSelection)
+                                //Paso 1.68,le ponemos la animación.
                                 $currentSelection.animation()){
-                            //Paso 56, hacemos un Foreach para seleccionarlos
+                            //Paso 1.56, hacemos un Foreach para seleccionarlos
                             ForEach(PredatorType.allCases){
-                                //Paso 59, ponemos el type in
+                                //Paso 1.60, ponemos el type in
                                 type in
-                                //Paso 61
+                                //Paso 1.61
                                 Label(type.rawValue.capitalized,systemImage: type.icon)
                             }
                         }
                     }label:{
+                        //Paso 1.50
                         Image(systemName: "slider.horizontal.3")
                     }
                 }

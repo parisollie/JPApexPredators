@@ -15,7 +15,7 @@ class Predators{
     //Paso 1.3, creammos una variable para poder decodificarlo, le ponemos var porque va a cambiar.
     var apexPredators: [ApexPredator] = []
     
-    //V-37,paso 64
+    //V-37,paso 1.64
     var allApexPredators: [ApexPredator] = []
 
     
@@ -40,9 +40,9 @@ class Predators{
                 */
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
-                //Paso 65,cambiamos a allApexPredators
+                //Paso 1.65,cambiamos a allApexPredators
                 allApexPredators = try decoder.decode([ApexPredator].self, from: data)
-                //Paso 66
+                //Paso 1.66
                 apexPredators = allApexPredators
                 
             }catch{
@@ -80,13 +80,13 @@ class Predators{
     
     //V-36, Paso 1.44
     func filter(by type:PredatorType){
-        //Paso 63, ,sino se filtra nada ,no hagas nada pon todo los dinosarios.
+        //Paso 1.63, ,sino se filtra nada ,no hagas nada pon todo los dinosarios.
         if type == .all{
-            //Paso 67,ponemos esto , ver video
+            //Paso 1.67,ponemos esto , ver video
             apexPredators = allApexPredators
         }else {
-            //Paso 1.47,ver el video
-            //Paso 68, ponemos el allApexPredators
+            /*Paso 1.47,ver el video
+            ponemos el allApexPredators*/
             apexPredators = allApexPredators.filter { predator in
                 predator.type == type
             }
